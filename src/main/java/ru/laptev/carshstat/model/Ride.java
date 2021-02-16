@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Map;
 import java.util.Objects;
 
 @Entity

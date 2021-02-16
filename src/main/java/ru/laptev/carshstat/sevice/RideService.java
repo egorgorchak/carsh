@@ -3,7 +3,6 @@ package ru.laptev.carshstat.sevice;
  * Created by Laptev Egor 2/5/2021
  * */
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.laptev.carshstat.model.Ride;
 import ru.laptev.carshstat.repository.RidesRepository;

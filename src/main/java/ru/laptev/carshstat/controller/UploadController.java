@@ -3,7 +3,6 @@ package ru.laptev.carshstat.controller;
  * Created by Laptev Egor 2/15/2021
  * */
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
