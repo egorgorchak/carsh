@@ -41,8 +41,6 @@ public class ConnectionService {
         CookieHandler.setDefault(cookieManager);
     }
 
-
-
     public String connect(String phoneCode, String phoneNumber) throws Exception {
         String postParams = createPostParamsForPhoneLogin(phoneNumber, phoneCode);
         PHONE_NUMBER = phoneNumber;
