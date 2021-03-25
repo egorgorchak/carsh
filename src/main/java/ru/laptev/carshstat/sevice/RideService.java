@@ -41,12 +41,12 @@ public class RideService {
         ridesRepository.deleteById(id);
     }
 
-    public Ride updateRide(Ride ride, Long id) {
-        Ride one = ridesRepository.findById(id).get();
-        one.setCarName(ride.getCarName());
-        one.setCarNumber(ride.getCarNumber());
-        one.setSum(ride.getSum());
-        ridesRepository.save(one);
-        return one;
-    }
+//    public Ride updateRide(Ride ride, Long id) {
+//        Ride one = ridesRepository.findById(id).get();
+//        one.setCarName(ride.getCarName());
+//        one.setCarNumber(ride.getCarNumber());
+//        one.setSum(ride.getSum());
+//        ridesRepository.save(one);
+//        return one;
+//    }
 }
