@@ -3,34 +3,35 @@ package ru.laptev.carshstat.sevice;
  * Created by Laptev Egor 2/5/2021
  * */
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.laptev.carshstat.model.Ride;
 import ru.laptev.carshstat.repository.RidesRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RideService {
 
-    private final RidesRepository ridesRepository;
-    private final ConnectionService connectionService;
+    private RidesRepository ridesRepository;
 
-    public RideService(RidesRepository ridesRepository, ConnectionService connectionService) {
+    @Autowired
+    public RideService(RidesRepository ridesRepository) {
         this.ridesRepository = ridesRepository;
-        this.connectionService = connectionService;
     }
 
     public List<Ride> getAllRides() {
         return ridesRepository.findAll();
     }
 
-    public List<Ride> uploadAndSaveRides(String code) throws Exception {
-        List<Ride> rides = connectionService.getAllRides(code);
-        return ridesRepository.saveAll(rides);
-    }
-
     public Ride getRideById(Long id) {
-        return ridesRepository.findById(id).get();
+        Optional<Ride> byId = ridesRepository.findById(id);
+        if (byId.isPresent()) {
+            return byId.get();
+        } else {
+            throw new RuntimeException("There is now a ride with given id!");
+        }
     }
 
     public Ride saveRide(Ride ride) {
@@ -41,12 +42,13 @@ public class RideService {
         ridesRepository.deleteById(id);
     }
 
-//    public Ride updateRide(Ride ride, Long id) {
-//        Ride one = ridesRepository.findById(id).get();
-//        one.setCarName(ride.getCarName());
-//        one.setCarNumber(ride.getCarNumber());
-//        one.setSum(ride.getSum());
-//        ridesRepository.save(one);
-//        return one;
-//    }
+    public Ride updateRide(Ride ride, Long id) {
+        Ride one = ridesRepository.findById(id).get();
+        one.setCar(ride.getCar());
+        one.setRideDate(ride.getRideDate());
+        one.setRideDate(ride.getRideDate());
+        one.setRideCost(ride.getRideCost());
+        ridesRepository.save(one);
+        return one;
+    }
 }

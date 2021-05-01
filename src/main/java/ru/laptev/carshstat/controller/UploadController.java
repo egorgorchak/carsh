@@ -22,24 +22,24 @@ import java.util.List;
 @RequestMapping("/upload")
 public class UploadController {
 
-    private final RideService rideService;
-    private final ConnectionService connectionService;
+//    private final RideService rideService;
+//    private final ConnectionService connectionService;
+//
+//    public UploadController(RideService rideService, ConnectionService connectionService) {
+//        this.rideService = rideService;
+//        this.connectionService = connectionService;
+//    }
+//
+//    @GetMapping("/connect")
+//    public ResponseEntity<String> connectToYouDrive(
+//            @PathVariable("phoneCode") String phoneCode,
+//            @PathVariable("phone") String phoneNumber) throws Exception {
+//        String connect = connectionService.connect(phoneCode, phoneNumber);
+//        return new ResponseEntity<>(connect, HttpStatus.OK);
+//    }
 
-    public UploadController(RideService rideService, ConnectionService connectionService) {
-        this.rideService = rideService;
-        this.connectionService = connectionService;
-    }
-
-    @GetMapping("/connect")
-    public ResponseEntity<String> connectToYouDrive(
-            @PathVariable("phoneCode") String phoneCode,
-            @PathVariable("phone") String phoneNumber) throws Exception {
-        String connect = connectionService.connect(phoneCode, phoneNumber);
-        return new ResponseEntity<>(connect, HttpStatus.OK);
-    }
-
-    @PostMapping("/youdrive")
-    public ResponseEntity<List<Ride>> uploadFromYouDrive(@PathVariable("code") String code) throws Exception {
-        return new ResponseEntity<>(rideService.uploadAndSaveRides(code), HttpStatus.OK);
-    }
+//    @PostMapping("/youdrive")
+//    public ResponseEntity<List<Ride>> uploadFromYouDrive(@PathVariable("code") String code) throws Exception {
+//        return new ResponseEntity<>(rideService.uploadAndSaveRides(code), HttpStatus.OK);
+//    }
 }
