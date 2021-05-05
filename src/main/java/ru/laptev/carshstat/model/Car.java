@@ -17,13 +17,10 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @Column(name = "car_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "plate_number")
+    private String plateNumber;
 
     @Column(name = "model")
     private String model;
 
-    @Column(name = "plate_number")
-    private String plateNumber;
 }

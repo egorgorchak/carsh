@@ -5,8 +5,9 @@ package ru.laptev.carshstat.sevice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import ru.laptev.carshstat.model.Car;
 import ru.laptev.carshstat.model.Ride;
+import ru.laptev.carshstat.repository.CarRepository;
 import ru.laptev.carshstat.repository.RidesRepository;
 
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.Optional;
 @Service
 public class RideService {
 
-    private RidesRepository ridesRepository;
+    private final RidesRepository ridesRepository;
+    private final CarRepository carRepository;
 
     @Autowired
-    public RideService(RidesRepository ridesRepository) {
+    public RideService(RidesRepository ridesRepository, CarRepository carRepository) {
         this.ridesRepository = ridesRepository;
+        this.carRepository = carRepository;
     }
 
     public List<Ride> getAllRides() {
@@ -36,6 +39,10 @@ public class RideService {
     }
 
     public Ride saveRide(Ride ride) {
+        Car carFromDB = isCarExistInDB(ride.getCar());
+        if (carFromDB != null) {
+            ride.setCar(carFromDB);
+        }
         return ridesRepository.save(ride);
     }
 
@@ -44,12 +51,30 @@ public class RideService {
     }
 
     public Ride updateRide(Ride ride, Long id) {
-        Ride one = ridesRepository.findById(id).get();
-        one.setCar(ride.getCar());
-        one.setRideDate(ride.getRideDate());
+        Optional<Ride> rideOptional = ridesRepository.findById(id);
+        if (!rideOptional.isPresent()) {
+            throw new RuntimeException("There is now ride with given id!");
+        }
+        Ride one = rideOptional.get();
+
+        Car carFromDB = isCarExistInDB(one.getCar());
+
+        if (carFromDB == null) {
+            one.setCar(ride.getCar());
+        } else {
+            carRepository.save(carFromDB);
+            one.setCar(carFromDB);
+        }
+
         one.setRideDate(ride.getRideDate());
         one.setRideCost(ride.getRideCost());
+        one.setCompany(ride.getCompany());
         ridesRepository.save(one);
         return one;
+    }
+
+    private Car isCarExistInDB(Car car) {
+        Optional<Car> byId = carRepository.findById(car.getPlateNumber());
+        return byId.orElse(null);
     }
 }
