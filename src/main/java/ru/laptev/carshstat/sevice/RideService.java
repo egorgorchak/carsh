@@ -5,6 +5,7 @@ package ru.laptev.carshstat.sevice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.laptev.carshstat.exception.RideNotFoundException;
 import ru.laptev.carshstat.model.Car;
 import ru.laptev.carshstat.model.Ride;
 import ru.laptev.carshstat.repository.CarRepository;
@@ -34,7 +35,7 @@ public class RideService {
         if (byId.isPresent()) {
             return byId.get();
         } else {
-            throw new RuntimeException("There is now a ride with given id!");
+            throw new RideNotFoundException("Get by id error: There is now a ride with given id!");
         }
     }
 
@@ -53,16 +54,15 @@ public class RideService {
     public Ride updateRide(Ride ride, Long id) {
         Optional<Ride> rideOptional = ridesRepository.findById(id);
         if (!rideOptional.isPresent()) {
-            throw new RuntimeException("There is now ride with given id!");
+            throw new RideNotFoundException("Updating error: There is now ride with given id!");
         }
         Ride one = rideOptional.get();
 
-        Car carFromDB = isCarExistInDB(one.getCar());
+        Car carFromDB = isCarExistInDB(ride.getCar());
 
         if (carFromDB == null) {
             one.setCar(ride.getCar());
         } else {
-            carRepository.save(carFromDB);
             one.setCar(carFromDB);
         }
 

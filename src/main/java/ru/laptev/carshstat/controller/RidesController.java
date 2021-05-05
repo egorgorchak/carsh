@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.laptev.carshstat.exception.RideNotFoundException;
 import ru.laptev.carshstat.model.Ride;
 import ru.laptev.carshstat.sevice.RideService;
 
@@ -50,8 +51,8 @@ public class RidesController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> exceptionHandler(RuntimeException e) {
+    @ExceptionHandler(RideNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(RideNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
