@@ -5,6 +5,7 @@ package ru.laptev.carshstat.sevice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.laptev.carshstat.model.Ride;
 import ru.laptev.carshstat.repository.RidesRepository;
 

@@ -49,4 +49,9 @@ public class RidesController {
         rideService.deleteRide(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> exceptionHandler(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

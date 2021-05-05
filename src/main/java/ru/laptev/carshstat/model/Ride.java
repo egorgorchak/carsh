@@ -35,4 +35,10 @@ public class Ride {
 
     @Column(name = "ride_cost")
     private double rideCost;
+
+    @Column(name = "company_name")
+    @Enumerated(EnumType.STRING)
+    private Company company;
+
+
 }
