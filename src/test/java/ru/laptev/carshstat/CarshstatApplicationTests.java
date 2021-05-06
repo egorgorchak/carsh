@@ -9,5 +9,4 @@ class CarshstatApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

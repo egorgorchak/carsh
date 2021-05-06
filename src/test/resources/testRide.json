@@ -1,0 +1,9 @@
+{
+  "car": {
+    "plateNumber": "T123EC78",
+    "model": "Lada"
+  },
+  "rideDate": "2012-01-01T15:15:05",
+  "rideCost": 222.11,
+  "company": "DELIMOBIL"
+}
