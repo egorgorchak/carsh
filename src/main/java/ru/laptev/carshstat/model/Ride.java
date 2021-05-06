@@ -3,13 +3,11 @@ package ru.laptev.carshstat.model;
  * Created by Laptev Egor 2/5/2021
  * */
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "ride")
@@ -25,7 +23,7 @@ public class Ride {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long rideId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "car_id")
     private Car car;
 
