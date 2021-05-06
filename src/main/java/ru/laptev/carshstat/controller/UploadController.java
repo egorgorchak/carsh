@@ -3,19 +3,9 @@ package ru.laptev.carshstat.controller;
  * Created by Laptev Egor 2/15/2021
  * */
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.laptev.carshstat.model.Ride;
-import ru.laptev.carshstat.sevice.ConnectionService;
-import ru.laptev.carshstat.sevice.RideService;
-
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController

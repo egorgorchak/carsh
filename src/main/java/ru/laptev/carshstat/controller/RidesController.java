@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.laptev.carshstat.exception.RideNotFoundException;
 import ru.laptev.carshstat.model.Ride;
-import ru.laptev.carshstat.sevice.RideService;
+import ru.laptev.carshstat.service.RideService;
 
 import java.util.List;
 

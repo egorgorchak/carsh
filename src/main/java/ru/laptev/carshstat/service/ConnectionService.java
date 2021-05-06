@@ -1,4 +1,4 @@
-package ru.laptev.carshstat.sevice;
+package ru.laptev.carshstat.service;
 /*
  * Created by Laptev Egor 2/5/2021
  * */
